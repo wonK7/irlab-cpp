@@ -25,7 +25,7 @@ Current research activities leverage the Spot robot for a variety of autonomous 
 - Package delivery and logistics
 - Trash picking and environment cleanup
 - Construction
-- Medical assistant 
+- [Medical assistant](https://github.com/ftang88/irlab_assistive_spot.git)
 - Playing catch (object manipulation and tracking)
 - Surveillance and patrolling
 - Culinary robot

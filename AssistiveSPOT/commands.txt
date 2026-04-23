@@ -1,0 +1,52 @@
+--- MAIN COMMANDS ---
+
+>>> Activate virtual environment:
+.\Documents\TicTacSPOT\new_spot_env\Scripts\activate.bat
+
+
+>>> To run the project:
+
+1. Run the server-side:
+python3 network_compute_server.py -m "%erickliu%\Desktop\SPOT\Utilities\models\my_efficient_model\saved_model" "%erickliu%\Desktop\SPOT\pieces\annotations\annotations\label_map.pbtxt" -d -n "tictactoe" 192.168.80.3
+
+2. Run the client-side:
+python main.py -m my_efficient_model -s tictactoe -c 0.85 192.168.80.3
+
+================================================================================
+
+
+---TROUBLESHOOTING---
+
+AttributeError: module 'tensorflow' has no attribute 'gfile'
+
+>> Go to label_map_util.py
+>> replace tf.gfile.GFile to tf.io.gfile.GFile
+
+
+================================================================================
+-----ARCHIVE-----
+
+python generate_tfrecord.py --xml_dir "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\annotations\annotations\test" --image_dir "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\images" --labels_path "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\annotations\annotations\label_map.pbtxt" --output_path "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\annotations\annotations\test.record"
+
+
+python model_main_tf2.py --model_dir="C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\models\my_model" --pipeline_config_path="C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\models\my_model\pipeline.config" --num_train_steps=20000
+
+python exporter_main_v2.py --input_type image_tensor --pipeline_config_path "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\models\my_tensorflow_lte\pipeline_file.config" --trained_checkpoint_dir "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\models\my_tensorflow_lte" --output_directory "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\exported_models"
+
+python eval.py -i "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\test" -m "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\models\my_efficient_model\saved_model" -l "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\annotations\annotations\label_map.pbtxt" -o "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\output"
+
+
+python tensorflow_server.py -m "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\Utilities\models\my_efficient_model\saved_model" "C:\Users\CPP-UAV-CYBER-A\Documents\TicTacSPOT\pieces\annotations\annotations\label_map.pbtxt" 192.168.80.3
+
+python .\test_pickup\identify_object.py --service tictactoe --confidence 0.5 --model my_efficient_model 192.168.80.3
+
+python fetch_only_pickup.py -s tictactoe -m my_efficient_model -c 0.85 192.168.80.3
+
+
+To run the image collecting program, run this command from TicTacSPOT: 
+python .\Fiducial\capture_image.py 192.168.80.3 --image-source frontleft_fisheye_image --folder pieces/dogtoy/images
+
+.\Spot.Data\new_spot_env\Scripts\activate.bat
+cd Spot.Data\TicTacSPOT\Fiducial
+
+PLEASE NOTE: new_spot_env was moved from Spot.Data to Documents, so you need to activate it from that location. everything else should still work normally. 
