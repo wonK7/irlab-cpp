@@ -1,0 +1,4 @@
+geometry_msgs/PoseStamped target_pose
+float64 speed_mps
+---
+spot_schemas_interfaces/Status status

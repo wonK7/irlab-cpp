@@ -1,0 +1,4 @@
+float64 angle_degrees
+float64 angular_speed_rps
+---
+spot_schemas_interfaces/Status status

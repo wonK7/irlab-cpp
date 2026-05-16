@@ -1,0 +1,4 @@
+float64 distance_meters
+float64 speed_mps
+---
+spot_schemas_interfaces/Status status
